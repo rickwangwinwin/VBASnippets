@@ -1,0 +1,37 @@
+Sub deletecolumns()
+Dim ws As Worksheet
+Dim starting_ws As Worksheet
+Set starting_ws = ActiveSheet 'remember which worksheet is active in the beginning
+
+Application.ScreenUpdating = False
+
+
+For Each ws In ThisWorkbook.Worksheets
+    ws.Activate
+    'do whatever you need
+  Dim MyRange As Range
+    Dim iCounter As Long
+'Step 2:  Define the target Range.
+    Set MyRange = ActiveSheet.UsedRange
+    
+'Step 3:  Start reverse looping through the range.
+    For iCounter = MyRange.Rows.Count To 1 Step -1
+    
+'Step 4: If entire row has only cerntain x number of cells populated then delete it.
+       If Application.CountA(Rows(iCounter).EntireRow) = 2 Then
+       Rows(iCounter).Delete
+       End If
+'Step 5: Increment the counter down
+    Next iCounter
+
+    
+Next
+
+starting_ws.Activate 'activate the worksheet that was originally active
+
+
+Application.ScreenUpdating = True
+End Sub
+
+
+

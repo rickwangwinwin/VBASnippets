@@ -1,0 +1,32 @@
+Sub populateyear()
+
+Dim ws As Worksheet
+Dim i As Integer
+Dim lr As Long
+
+Application.ScreenUpdating = False
+
+
+For Each ws In ThisWorkbook.Worksheets
+    
+    ws.Activate
+    
+    lr = ActiveSheet.UsedRange.Rows.Count
+    
+    For i = lr To 2 Step -1
+    
+        If IsEmpty(Cells(i, 2)) And IsEmpty(Cells(i, 3)) Then
+        
+        Rows(i).EntireRow.Delete
+        
+        End If
+    
+    Next i
+    
+Next
+
+Application.ScreenUpdating = True
+
+End Sub
+
+

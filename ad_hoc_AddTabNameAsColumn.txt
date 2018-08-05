@@ -1,0 +1,28 @@
+Sub addingyoa()
+
+Dim ws As Worksheet
+
+
+For Each ws In ThisWorkbook.Worksheets
+
+    ws.Activate
+    
+    Dim lr As Long
+    Dim lc As Long
+    
+    
+    lr = ActiveSheet.UsedRange.Rows.Count
+    lc = ActiveSheet.UsedRange.Columns.Count
+    
+    Cells(1, lc).Value = "Year of Accounting"
+    
+    For i = lr To 2 Step -1
+    
+    Cells(i, lc + 1).Value = ws.Name
+    
+    Next i
+
+Next
+
+End Sub
+

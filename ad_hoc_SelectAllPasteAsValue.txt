@@ -1,0 +1,5 @@
+ Cells.Select
+    Selection.Copy
+    Range("A1").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False

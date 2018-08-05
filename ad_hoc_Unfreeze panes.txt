@@ -1,0 +1,14 @@
+Sub unfreezepanes()
+
+Dim ws As Worksheet
+
+
+For Each ws In ThisWorkbook.Worksheets
+
+ws.Activate
+
+ActiveWindow.FreezePanes = False
+
+Next
+
+End Sub

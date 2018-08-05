@@ -1,0 +1,57 @@
+Sub GetSheets()
+Path = "C:\Users\2014669\Desktop\Navigators\test\"
+Filename = Dir(Path & "*.xlsx")
+  Do While Filename <> ""
+  Workbooks.Open Filename:=Path & Filename, ReadOnly:=True
+     For Each Sheet In ActiveWorkbook.Sheets
+     Sheet.Copy After:=ThisWorkbook.Sheets(1)
+  Next Sheet
+     Workbooks(Filename).Close
+     Filename = Dir()
+  Loop
+End Sub
+
+Sub Deletebyname()
+'Updateby Extendoffice 20160930
+    Dim shName As String
+    Dim xName As String
+    Dim xWs As Worksheet
+    Dim cnt As Integer
+    shName = Application.InputBox("Enter the specific text:", "Kutools for Excel", _
+                                    ThisWorkbook.ActiveSheet.Name, , , , , 2)
+    If shName = "" Then Exit Sub
+    xName = "*" & shName & "*"
+'    MsgBox xName
+    Application.DisplayAlerts = False
+    cnt = 0
+    For Each xWs In ThisWorkbook.Sheets
+        If xWs.Name Like xName Then
+            xWs.Delete
+            cnt = cnt + 1
+        End If
+    Next xWs
+    Application.DisplayAlerts = True
+    MsgBox "Have deleted" & cnt & "worksheets", vbInformation, "Kutools for Excel"
+End Sub
+
+
+Sub deleterowsstepone()
+    Dim xWs As Worksheet
+    Set xWs = ActiveSheet
+    ThisWorkbook.Worksheets.Select
+    Rows("1:9").Select
+    Selection.Delete
+    xWs.Select
+End Sub
+
+Sub deleterowssteptwo()
+    Dim xWs As Worksheet
+    Set xWs = ActiveSheet
+    ThisWorkbook.Worksheets.Select
+    Rows("2").Select
+    Selection.Delete
+    xWs.Select
+End Sub
+
+
+

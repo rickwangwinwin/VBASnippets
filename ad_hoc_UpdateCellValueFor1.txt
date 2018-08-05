@@ -1,0 +1,15 @@
+Sub addingyoa()
+
+Dim ws As Worksheet
+
+
+For Each ws In ThisWorkbook.Worksheets
+
+    ws.Activate
+    
+    Range("A1").Value = "Year of Claim"
+
+Next
+
+End Sub
+

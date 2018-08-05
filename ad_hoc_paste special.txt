@@ -1,0 +1,19 @@
+    Public Sub CopyrangeA()
+
+    Dim firstrowDB As Long, lastrow As Long
+    Dim arr1, arr2, i As Integer
+
+    firstrowDB = 1
+    arr1 = Array("BJ", "BK")
+    arr2 = Array("A", "B")
+
+         For i = LBound(arr1) To UBound(arr1)
+        With Sheets("SheetA")
+           lastrow = Application.Max(3, .Cells(.Rows.Count, arr1(i)).End(xlUp).Row)
+           .Range(.Cells(1, arr1(i)), .Cells(lastrow, arr1(i))).Copy
+           Sheets("SheetB").Range(arr2(i) & firstrowDB).PasteSpecial xlPasteValues
+        End With
+    Next
+    Application.CutCopyMode = False
+
+End Sub
